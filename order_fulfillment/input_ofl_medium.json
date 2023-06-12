@@ -1,0 +1,203 @@
+{
+  "number_of_items": 15,
+  "carton_volume": 2.0,
+  "items": [
+    {
+      "item_id": "carrot",
+      "quantity": 5,
+      "volume": 0.1
+    },
+    {
+      "item_id": "endive",
+      "quantity": 2,
+      "volume": 0.2
+    },
+    {
+      "item_id": "kale",
+      "quantity": 12,
+      "volume": 0.1
+    },
+    {
+      "item_id": "spinach",
+      "quantity": 2,
+      "volume": 0.4
+    },
+    {
+      "item_id": "csa-box",
+      "quantity": 2,
+      "volume": 3
+    },
+    {
+      "item_id": "radish",
+      "quantity": 20,
+      "volume": 0.1
+    },
+    {
+      "item_id": "strawberries",
+      "quantity": 5,
+      "volume": 0.2
+    },
+    {
+      "item_id": "apple",
+      "quantity": 5,
+      "volume": 0.4
+    },
+    {
+      "item_id": "potato",
+      "quantity": 2,
+      "volume": 2
+    },
+    {
+      "item_id": "seeds",
+      "quantity": 10,
+      "volume": 0.25
+    },
+    {
+      "item_id": "honey",
+      "quantity": 3,
+      "volume": 1.25
+    },
+    {
+      "item_id": "syrup",
+      "quantity": 10,
+      "volume": 0.1
+    },
+    {
+      "item_id": "zucchini",
+      "quantity": 2,
+      "volume": 1.3
+    },
+    {
+      "item_id": "eggplant",
+      "quantity": 4,
+      "volume": 0.2
+    },
+    {
+      "item_id": "onion",
+      "quantity": 6,
+      "volume": 0.4
+    }
+  ],
+  "dcs": [
+    {
+      "dc_id": "dc1",
+      "handling_cost": 1,
+      "inventory": {
+        "carrot": 3,
+        "endive": 8,
+        "kale": 12,
+        "spinach": 4,
+        "csa-box": 14,
+        "radish": 3,
+        "strawberries": 15,
+        "apple": 2,
+        "potato": 3,
+        "seeds": 14,
+        "honey": 12,
+        "syrup": 11,
+        "zucchini": 1,
+        "eggplant": 13,
+        "onion": 6
+      }
+    },
+    {
+      "dc_id": "dc2",
+      "handling_cost": 0.4,
+      "inventory": {
+        "carrot": 17,
+        "endive": 7,
+        "kale": 9,
+        "spinach": 0,
+        "csa-box": 3,
+        "radish": 2,
+        "strawberries": 7,
+        "apple": 0,
+        "potato": 1,
+        "seeds": 5,
+        "honey": 6,
+        "syrup": 2,
+        "zucchini": 2,
+        "eggplant": 7,
+        "onion": 13
+      }
+    },
+    {
+      "dc_id": "dc3",
+      "handling_cost": 0.7,
+      "inventory": {
+        "carrot": 2,
+        "endive": 15,
+        "kale": 11,
+        "spinach": 2,
+        "csa-box": 6,
+        "radish": 17,
+        "strawberries": 2,
+        "apple": 3,
+        "potato": 5,
+        "seeds": 3,
+        "honey": 4,
+        "syrup": 7,
+        "zucchini": 12,
+        "eggplant": 13,
+        "onion": 1
+      }
+    },
+    {
+      "dc_id": "dc4",
+      "handling_cost": 0.6,
+      "inventory": {
+        "carrot": 12,
+        "endive": 16,
+        "kale": 11,
+        "spinach": 2,
+        "csa-box": 1,
+        "radish": 0,
+        "strawberries": 0,
+        "apple": 2,
+        "potato": 1,
+        "seeds": 1,
+        "honey": 16,
+        "syrup": 14,
+        "zucchini": 7,
+        "eggplant": 9,
+        "onion": 10
+      }
+    }
+  ],
+  "carrier_capacities": {
+    "dc1": {
+      "carrier1": 10.0,
+      "carrier2": 25.0
+    },
+    "dc2": {
+      "carrier1": 21.0,
+      "carrier2": 18.0
+    },
+    "dc3": {
+      "carrier1": 8.0,
+      "carrier2": 15.0
+    },
+    "dc4": {
+      "carrier1": 15.0,
+      "carrier2": 23.0
+    }
+  },
+  "carrier_deliveryCost": {
+    "dc1": {
+      "carrier1": 1.5,
+      "carrier2": 1.2
+    },
+    "dc2": {
+      "carrier1": 1.4,
+      "carrier2": 1.5
+    },
+    "dc3": {
+      "carrier1": 0.8,
+      "carrier2": 1.05
+    },
+    "dc4": {
+      "carrier1": 1.1,
+      "carrier2": 1.3
+    }
+  }
+}

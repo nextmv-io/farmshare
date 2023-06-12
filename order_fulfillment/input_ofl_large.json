@@ -1,0 +1,615 @@
+{
+  "number_of_items": 45,
+  "carton_volume": 2.0,
+  "items": [
+    {
+      "item_id": "book",
+      "quantity": 5,
+      "volume": 0.1
+    },
+    {
+      "item_id": "sneaker",
+      "quantity": 2,
+      "volume": 0.2
+    },
+    {
+      "item_id": "hydrating gel",
+      "quantity": 12,
+      "volume": 0.1
+    },
+    {
+      "item_id": "pressure cooker",
+      "quantity": 2,
+      "volume": 0.4
+    },
+    {
+      "item_id": "mattress",
+      "quantity": 2,
+      "volume": 3
+    },
+    {
+      "item_id": "permanent marker",
+      "quantity": 20,
+      "volume": 0.1
+    },
+    {
+      "item_id": "kitchen knife",
+      "quantity": 5,
+      "volume": 0.2
+    },
+    {
+      "item_id": "football",
+      "quantity": 5,
+      "volume": 0.4
+    },
+    {
+      "item_id": "tent",
+      "quantity": 2,
+      "volume": 2
+    },
+    {
+      "item_id": "dog toy",
+      "quantity": 10,
+      "volume": 0.25
+    },
+    {
+      "item_id": "car seat",
+      "quantity": 3,
+      "volume": 1.25
+    },
+    {
+      "item_id": "fitness tracker",
+      "quantity": 10,
+      "volume": 0.1
+    },
+    {
+      "item_id": "acoustic guitar",
+      "quantity": 2,
+      "volume": 1.3
+    },
+    {
+      "item_id": "dash cam",
+      "quantity": 4,
+      "volume": 0.2
+    },
+    {
+      "item_id": "cordless drill",
+      "quantity": 6,
+      "volume": 0.4
+    },
+    {
+      "item_id": "acrylic paint",
+      "quantity": 5,
+      "volume": 0.1
+    },
+    {
+      "item_id": "pruning shears",
+      "quantity": 2,
+      "volume": 0.3
+    },
+    {
+      "item_id": "coffee",
+      "quantity": 7,
+      "volume": 0.2
+    },
+    {
+      "item_id": "suitcase",
+      "quantity": 3,
+      "volume": 0.9
+    },
+    {
+      "item_id": "necklace",
+      "quantity": 4,
+      "volume": 0.1
+    },
+    {
+      "item_id": "felt tip pens",
+      "quantity": 50,
+      "volume": 0.01
+    },
+    {
+      "item_id": "headphones",
+      "quantity": 3,
+      "volume": 0.2
+    },
+    {
+      "item_id": "wireless mouse",
+      "quantity": 5,
+      "volume": 0.2
+    },
+    {
+      "item_id": "table lamp",
+      "quantity": 2,
+      "volume": 0.7
+    },
+    {
+      "item_id": "short sleeve t-shirt",
+      "quantity": 10,
+      "volume": 0.2
+    },
+    {
+      "item_id": "concealer",
+      "quantity": 3,
+      "volume": 0.1
+    },
+    {
+      "item_id": "vacuum cleaner",
+      "quantity": 3,
+      "volume": 1.1
+    },
+    {
+      "item_id": "boardgame",
+      "quantity": 4,
+      "volume": 0.4
+    },
+    {
+      "item_id": "guitar picks",
+      "quantity": 10,
+      "volume": 0.1
+    },
+    {
+      "item_id": "camera",
+      "quantity": 6,
+      "volume": 0.4
+    },
+    {
+      "item_id": "tea",
+      "quantity": 12,
+      "volume": 0.1
+    },
+    {
+      "item_id": "sunglasses",
+      "quantity": 2,
+      "volume": 0.2
+    },
+    {
+      "item_id": "ink cartridges",
+      "quantity": 12,
+      "volume": 0.1
+    },
+    {
+      "item_id": "running shoes",
+      "quantity": 2,
+      "volume": 0.4
+    },
+    {
+      "item_id": "moisturizing lotion",
+      "quantity": 4,
+      "volume": 0.1
+    },
+    {
+      "item_id": "mini projector",
+      "quantity": 1,
+      "volume": 0.6
+    },
+    {
+      "item_id": "nonstick pan",
+      "quantity": 5,
+      "volume": 0.3
+    },
+    {
+      "item_id": "portable charger",
+      "quantity": 5,
+      "volume": 0.1
+    },
+    {
+      "item_id": "shampoo",
+      "quantity": 2,
+      "volume": 0.1
+    },
+    {
+      "item_id": "backpack",
+      "quantity": 3,
+      "volume": 0.5
+    },
+    {
+      "item_id": "bluetooth speakers",
+      "quantity": 3,
+      "volume": 0.3
+    },
+    {
+      "item_id": "air fryer",
+      "quantity": 2,
+      "volume": 0.8
+    },
+    {
+      "item_id": "dumbbells",
+      "quantity": 4,
+      "volume": 0.6
+    },
+    {
+      "item_id": "cat food",
+      "quantity": 12,
+      "volume": 0.2
+    },
+    {
+      "item_id": "watch",
+      "quantity": 3,
+      "volume": 0.1
+    }
+  ],
+  "dcs": [
+    {
+      "dc_id": "dc1",
+      "handling_cost": 1,
+      "inventory": {
+        "book": 3,
+        "sneaker": 8,
+        "hydrating gel": 12,
+        "pressure cooker": 4,
+        "mattress": 14,
+        "permanent marker": 3,
+        "kitchen knife": 15,
+        "football": 2,
+        "tent": 3,
+        "dog toy": 14,
+        "car seat": 12,
+        "fitness tracker": 11,
+        "acoustic guitar": 1,
+        "dash cam": 13,
+        "cordless drill": 6,
+        "acrylic paint": 3,
+        "pruning shears": 8,
+        "coffee": 12,
+        "suitcase": 4,
+        "necklace": 14,
+        "felt tip pens": 4,
+        "headphones": 11,
+        "wireless mouse": 3,
+        "table lamp": 4,
+        "short sleeve t-shirt": 12,
+        "concealer": 11,
+        "vacuum cleaner": 1,
+        "boardgame": 3,
+        "guitar picks": 3,
+        "camera": 1,
+        "tea": 0,
+        "sunglasses": 15,
+        "ink cartridges": 12,
+        "running shoes": 4,
+        "moisturizing lotion": 14,
+        "mini projector": 4,
+        "nonstick pan": 12,
+        "portable charger": 2,
+        "shampoo": 3,
+        "backpack": 13,
+        "bluetooth speakers": 9,
+        "air fryer": 7,
+        "dumbbells": 1,
+        "cat food": 8,
+        "watch": 6
+      }
+    },
+    {
+      "dc_id": "dc2",
+      "handling_cost": 0.4,
+      "inventory": {
+        "book": 4,
+        "sneaker": 3,
+        "hydrating gel": 23,
+        "pressure cooker": 4,
+        "mattress": 2,
+        "permanent marker": 4,
+        "kitchen knife": 7,
+        "football": 6,
+        "tent": 12,
+        "dog toy": 13,
+        "car seat": 9,
+        "fitness tracker": 11,
+        "acoustic guitar": 1,
+        "dash cam": 1,
+        "cordless drill": 2,
+        "acrylic paint": 2,
+        "pruning shears": 1,
+        "coffee": 15,
+        "suitcase": 3,
+        "necklace": 12,
+        "felt tip pens": 11,
+        "headphones": 7,
+        "wireless mouse": 3,
+        "table lamp": 16,
+        "short sleeve t-shirt": 2,
+        "concealer": 4,
+        "vacuum cleaner": 14,
+        "boardgame": 13,
+        "guitar picks": 13,
+        "camera": 6,
+        "tea": 3,
+        "sunglasses": 8,
+        "ink cartridges": 4,
+        "running shoes": 3,
+        "moisturizing lotion": 7,
+        "mini projector": 8,
+        "nonstick pan": 7,
+        "portable charger": 14,
+        "shampoo": 16,
+        "backpack": 14,
+        "bluetooth speakers": 1,
+        "air fryer": 0,
+        "dumbbells": 1,
+        "cat food": 3,
+        "watch": 1
+      }
+    },
+    {
+      "dc_id": "dc3",
+      "handling_cost": 0.7,
+      "inventory": {
+        "book": 3,
+        "sneaker": 7,
+        "hydrating gel": 9,
+        "pressure cooker": 1,
+        "mattress": 2,
+        "permanent marker": 15,
+        "kitchen knife": 5,
+        "football": 7,
+        "tent": 5,
+        "dog toy": 12,
+        "car seat": 1,
+        "fitness tracker": 21,
+        "acoustic guitar": 3,
+        "dash cam": 2,
+        "cordless drill": 3,
+        "acrylic paint": 8,
+        "pruning shears": 8,
+        "coffee": 12,
+        "suitcase": 4,
+        "necklace": 14,
+        "felt tip pens": 3,
+        "headphones": 15,
+        "wireless mouse": 2,
+        "table lamp": 3,
+        "short sleeve t-shirt": 14,
+        "concealer": 12,
+        "vacuum cleaner": 11,
+        "boardgame": 1,
+        "guitar picks": 13,
+        "camera": 6,
+        "tea": 3,
+        "sunglasses": 8,
+        "ink cartridges": 12,
+        "running shoes": 4,
+        "moisturizing lotion": 14,
+        "mini projector": 3,
+        "nonstick pan": 15,
+        "portable charger": 2,
+        "shampoo": 3,
+        "backpack": 14,
+        "bluetooth speakers": 12,
+        "air fryer": 11,
+        "dumbbells": 1,
+        "cat food": 13,
+        "watch": 6
+      }
+    },
+    {
+      "dc_id": "dc4",
+      "handling_cost": 0.6,
+      "inventory": {
+        "book": 9,
+        "sneaker": 0,
+        "hydrating gel": 8,
+        "pressure cooker": 13,
+        "mattress": 2,
+        "permanent marker": 14,
+        "kitchen knife": 0,
+        "football": 2,
+        "tent": 3,
+        "dog toy": 14,
+        "car seat": 12,
+        "fitness tracker": 5,
+        "acoustic guitar": 8,
+        "dash cam": 14,
+        "cordless drill": 6,
+        "acrylic paint": 3,
+        "pruning shears": 4,
+        "coffee": 11,
+        "suitcase": 1,
+        "necklace": 10,
+        "felt tip pens": 18,
+        "headphones": 20,
+        "wireless mouse": 10,
+        "table lamp": 2,
+        "short sleeve t-shirt": 16,
+        "concealer": 13,
+        "vacuum cleaner": 17,
+        "boardgame": 1,
+        "guitar picks": 13,
+        "camera": 4,
+        "tea": 6,
+        "sunglasses": 2,
+        "ink cartridges": 2,
+        "running shoes": 6,
+        "moisturizing lotion": 1,
+        "mini projector": 10,
+        "nonstick pan": 12,
+        "portable charger": 3,
+        "shampoo": 5,
+        "backpack": 7,
+        "bluetooth speakers": 9,
+        "air fryer": 12,
+        "dumbbells": 4,
+        "cat food": 12,
+        "watch": 2
+      }
+    },
+    {
+      "dc_id": "dc5",
+      "handling_cost": 0.9,
+      "inventory": {
+        "book": 4,
+        "sneaker": 6,
+        "hydrating gel": 2,
+        "pressure cooker": 2,
+        "mattress": 2,
+        "permanent marker": 3,
+        "kitchen knife": 15,
+        "football": 1,
+        "tent": 8,
+        "dog toy": 14,
+        "car seat": 16,
+        "fitness tracker": 1,
+        "acoustic guitar": 10,
+        "dash cam": 3,
+        "cordless drill": 7,
+        "acrylic paint": 8,
+        "pruning shears": 8,
+        "coffee": 2,
+        "suitcase": 5,
+        "necklace": 11,
+        "felt tip pens": 10,
+        "headphones": 12,
+        "wireless mouse": 4,
+        "table lamp": 5,
+        "short sleeve t-shirt": 4,
+        "concealer": 2,
+        "vacuum cleaner": 8,
+        "boardgame": 9,
+        "guitar picks": 11,
+        "camera": 2,
+        "tea": 12,
+        "sunglasses": 9,
+        "ink cartridges": 12,
+        "running shoes": 4,
+        "moisturizing lotion": 10,
+        "mini projector": 5,
+        "nonstick pan": 5,
+        "portable charger": 3,
+        "shampoo": 4,
+        "backpack": 2,
+        "bluetooth speakers": 3,
+        "air fryer": 6,
+        "dumbbells": 6,
+        "cat food": 10,
+        "watch": 2
+      }
+    },
+    {
+      "dc_id": "dc6",
+      "handling_cost": 1.1,
+      "inventory": {
+        "book": 5,
+        "sneaker": 6,
+        "hydrating gel": 2,
+        "pressure cooker": 9,
+        "mattress": 8,
+        "permanent marker": 4,
+        "kitchen knife": 6,
+        "football": 16,
+        "tent": 12,
+        "dog toy": 8,
+        "car seat": 18,
+        "fitness tracker": 8,
+        "acoustic guitar": 6,
+        "dash cam": 17,
+        "cordless drill": 4,
+        "acrylic paint": 2,
+        "pruning shears": 0,
+        "coffee": 0,
+        "suitcase": 0,
+        "necklace": 10,
+        "felt tip pens": 4,
+        "headphones": 3,
+        "wireless mouse": 5,
+        "table lamp": 7,
+        "short sleeve t-shirt": 8,
+        "concealer": 19,
+        "vacuum cleaner": 15,
+        "boardgame": 2,
+        "guitar picks": 6,
+        "camera": 5,
+        "tea": 8,
+        "sunglasses": 7,
+        "ink cartridges": 12,
+        "running shoes": 4,
+        "moisturizing lotion": 4,
+        "mini projector": 2,
+        "nonstick pan": 5,
+        "portable charger": 12,
+        "shampoo": 8,
+        "backpack": 7,
+        "bluetooth speakers": 3,
+        "air fryer": 6,
+        "dumbbells": 5,
+        "cat food": 12,
+        "watch": 2
+      }
+    }
+  ],
+  "carrier_capacities": {
+    "dc1": {
+      "carrier1": 10.0,
+      "carrier2": 13.0,
+      "carrier3": 12.0,
+      "carrier4": 5.0
+    },
+    "dc2": {
+      "carrier1": 3.0,
+      "carrier2": 6.0,
+      "carrier3": 11.0,
+      "carrier4": 13.0
+    },
+    "dc3": {
+      "carrier1": 8.0,
+      "carrier2": 16.0,
+      "carrier3": 12.0,
+      "carrier4": 7.0
+    },
+    "dc4": {
+      "carrier1": 14.0,
+      "carrier2": 12.0,
+      "carrier3": 20.0,
+      "carrier4": 19.0
+    },
+    "dc5": {
+      "carrier1": 7.0,
+      "carrier2": 21.0,
+      "carrier3": 16.0,
+      "carrier4": 25.0
+    },
+    "dc6": {
+      "carrier1": 8.0,
+      "carrier2": 9.0,
+      "carrier3": 26.0,
+      "carrier4": 18.0
+    }
+  },
+  "carrier_deliveryCost": {
+    "dc1": {
+      "carrier1": 1.5,
+      "carrier2": 1.2,
+      "carrier3": 1.3,
+      "carrier4": 1.1
+    },
+    "dc2": {
+      "carrier1": 0.9,
+      "carrier2": 1.2,
+      "carrier3": 1.0,
+      "carrier4": 1.1
+    },
+    "dc3": {
+      "carrier1": 1.3,
+      "carrier2": 0.8,
+      "carrier3": 0.85,
+      "carrier4": 0.9
+    },
+    "dc4": {
+      "carrier1": 1.3,
+      "carrier2": 1.1,
+      "carrier3": 1.2,
+      "carrier4": 1.1
+    },
+    "dc5": {
+      "carrier1": 0.9,
+      "carrier2": 0.8,
+      "carrier3": 1.1,
+      "carrier4": 1.0
+    },
+    "dc6": {
+      "carrier1": 1.1,
+      "carrier2": 1.3,
+      "carrier3": 1.5,
+      "carrier4": 1.2
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "number_of_items": 5,
+  "carton_volume": 2.0,
+  "items": [
+    {
+      "item_id": "book",
+      "quantity": 5,
+      "volume": 0.1
+    },
+    {
+      "item_id": "sneaker",
+      "quantity": 2,
+      "volume": 0.2
+    },
+    {
+      "item_id": "hydrating gel",
+      "quantity": 12,
+      "volume": 0.1
+    },
+    {
+      "item_id": "pressure cooker",
+      "quantity": 2,
+      "volume": 0.4
+    },
+    {
+      "item_id": "mattress",
+      "quantity": 2,
+      "volume": 3
+    }
+  ],
+  "dcs": [
+    {
+      "dc_id": "dc1",
+      "handling_cost": 1,
+      "inventory": {
+        "book": 0,
+        "sneaker": 8,
+        "hydrating gel": 4,
+        "pressure cooker": 3,
+        "mattress": 5
+      }
+    },
+    {
+      "dc_id": "dc2",
+      "handling_cost": 0.3,
+      "inventory": {
+        "book": 10,
+        "sneaker": 6,
+        "hydrating gel": 9,
+        "pressure cooker": 2,
+        "mattress": 4
+      }
+    }
+  ],
+  "carrier_capacities": {
+    "dc1": {
+      "carrier1": 10.0,
+      "carrier2": 25.0
+    },
+    "dc2": {
+      "carrier1": 21.0,
+      "carrier2": 18.0
+    }
+  },
+  "carrier_deliveryCost": {
+    "dc1": {
+      "carrier1": 1.5,
+      "carrier2": 1.2
+    },
+    "dc2": {
+      "carrier1": 1.4,
+      "carrier2": 1.5
+    }
+  }
+}
