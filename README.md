@@ -1,2 +1,2 @@
 # farmshare
-Sample apps for the Nextmv farmshare example
+Sample order fulfillment apps for the Nextmv farmshare example
