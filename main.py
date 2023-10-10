@@ -13,6 +13,7 @@ from app.travel_duration import add_travel_duration_dimension
 
 def main():
     """Entry point for the program."""
+
     parser = argparse.ArgumentParser(description="Solve problems with OR-Tools.")
     parser.add_argument(
         "-input",
