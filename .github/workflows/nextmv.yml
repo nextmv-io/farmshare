@@ -22,14 +22,14 @@ jobs:
 
       - name: Install CLI
         run: |
-          export NEXTMV_API_KEY=$NEXTMV_API_KEY
           export NEXTMV_BASE_URL=$NEXTMV_BASE_URL
+          export NEXTMV_API_KEY=$NEXTMV_API_KEY
           curl -sS "https://cloud.nextmv.io/install-cli.txt" | bash -
 
       - name: Configure CLI
         shell: bash -l {0}
         run: |
-          nextmv configure --api-key $NEXTMV_API_KEY \
+          nextmv configure --api-key $NEXTMV_API_KEY
           nextmv activate
           nextmv sdk install
 
