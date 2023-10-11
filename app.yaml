@@ -5,4 +5,4 @@ runtime: ghcr.io/nextmv-io/runtime/ortools:latest
 # (e.g.: configs/*.json) is supported.
 files:
   - main.py
-  - app/*
+  - app/*.py
