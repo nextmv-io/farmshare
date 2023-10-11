@@ -1,0 +1,92 @@
+name: nextmv
+
+on:
+  push:
+    branches:
+      - stable
+
+jobs:
+  acceptance_test:
+    runs-on: ubuntu-latest
+    env:
+      NEXTMV_BASE_URL: https://api.cloud.nextmv.io
+      NEXTMV_API_KEY: ${{ secrets.NEXTMV_API_KEY }}
+      APP_ID: informs
+      INPUT_SET: acceptance-test-set
+      IDENTIFIER: ""
+      CONTROL_INSTANCE: production
+      CANDIDATE_INSTANCE: development
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install CLI
+        run: |
+          export NEXTMV_BASE_URL=$NEXTMV_BASE_URL
+          export NEXTMV_API_KEY=$NEXTMV_API_KEY
+          curl -sS "https://cloud.nextmv.io/install-cli.txt" | bash -
+
+      - name: Configure CLI
+        shell: bash -l {0}
+        run: |
+          nextmv configure --api-key $NEXTMV_API_KEY
+          nextmv activate
+          nextmv sdk install
+
+      - name: Set identifier
+        run: |
+          IDENTIFIER=$(git rev-parse --short HEAD)
+          echo "IDENTIFIER=$IDENTIFIER" >> $GITHUB_ENV
+
+      - name: Update app, create version, update instance, create experiment
+        shell: bash -l {0}
+        run: |
+          echo "running app push" >> $GITHUB_STEP_SUMMARY
+          nextmv app push \
+              --app-id $APP_ID
+
+          echo "running app version create" >> $GITHUB_STEP_SUMMARY
+          nextmv app version create \
+              --app-id $APP_ID \
+              --version-id $IDENTIFIER \
+              --name $IDENTIFIER \
+              --description "Version ${IDENTIFIER}"
+
+          echo "running app instance update" >> $GITHUB_STEP_SUMMARY
+          nextmv app instance update \
+              --app-id $APP_ID \
+              --version-id $IDENTIFIER \
+              --instance-id $CANDIDATE_INSTANCE
+
+          echo "running experiment batch start" >> $GITHUB_STEP_SUMMARY
+          nextmv experiment batch start \
+              --app-id $APP_ID \
+              --experiment-id $IDENTIFIER \
+              --input-set-id $INPUT_SET \
+              --instance-ids "${CONTROL_INSTANCE},${CANDIDATE_INSTANCE}" \
+              --name $IDENTIFIER \
+              --description "Experiment ${IDENTIFIER}" \
+              --confirm
+
+      - name: Run acceptance test
+        run: |
+          PAYLOAD=$(
+            cat acceptance_test.json | 
+            jq \
+              -c \
+              --arg IDENTIFIER $IDENTIFIER \
+              --arg APP_ID $APP_ID \
+              --arg CONTROL_INSTANCE $CONTROL_INSTANCE \
+              --arg CANDIDATE_INSTANCE $CANDIDATE_INSTANCE \
+              '.id |= $IDENTIFIER | 
+              .name |= $IDENTIFIER | 
+              .experiment_id |= $IDENTIFIER | 
+              .app_id |= $APP_ID | 
+              .control.instance_id |= $CONTROL_INSTANCE | 
+              .candidate.instance_id |= $CANDIDATE_INSTANCE'
+          )
+
+          curl --location $NEXTMV_BASE_URL/v1/applications/$APP_ID/experiments/acceptance \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer $NEXTMV_API_KEY" \
+            --data $PAYLOAD
