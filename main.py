@@ -9,6 +9,7 @@ from ortools.constraint_solver import pywrapcp
 from app.input import Input
 from app.output import Output
 from app.travel_duration import add_travel_duration_dimension
+from app.unplanned import add_unplanned_penalty
 
 
 def main():
@@ -31,15 +32,29 @@ def main():
         help="Max runtime duration (in seconds). Default is 30.",
         type=int,
     )
+    parser.add_argument(
+        "-max.travel.duration",
+        default=24 * 3600,
+        help="Max duration that a vehicle can travel for (in seconds). Default is 24 * 3600.",
+        type=int,
+        dest="max_travel_duration",
+    )
+    parser.add_argument(
+        "-unplanned.penalty",
+        default=50000,
+        help="Penalty for dropping a stop.",
+        type=int,
+        dest="unplanned_penalty",
+    )
     args = parser.parse_args()
 
     # Read input data, solve the problem and write the solution.
     input_data = Input.read(args.input)
-    output = solve(input_data=input_data, duration=args.duration)
+    output = solve(input_data=input_data, args=args)
     output.write(args.output)
 
 
-def solve(input_data: Input, duration: int) -> Output:
+def solve(input_data: Input, args: argparse.Namespace) -> Output:
     """Solves the given problem and returns the solution."""
 
     # Create the routing index manager and model.
@@ -51,11 +66,22 @@ def solve(input_data: Input, duration: int) -> Output:
     model = pywrapcp.RoutingModel(manager)
 
     # Add features to the model.
-    add_travel_duration_dimension(manager=manager, model=model, input_data=input_data)
+    add_travel_duration_dimension(
+        manager=manager,
+        model=model,
+        input_data=input_data,
+        max_travel_duration=args.max_travel_duration,
+    )
+    add_unplanned_penalty(
+        manager=manager,
+        model=model,
+        input_data=input_data,
+        unplanned_penalty=args.unplanned_penalty,
+    )
 
     # Configure the solver.
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
-    search_parameters.time_limit.FromSeconds(duration)
+    search_parameters.time_limit.FromSeconds(args.duration)
 
     # Solve the problem.
     solution = model.SolveWithParameters(search_parameters)

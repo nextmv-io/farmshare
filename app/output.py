@@ -69,6 +69,7 @@ class Vehicle:
 class Solution:
     """The solution of the problem."""
 
+    unplanned: List[InputStop]
     vehicles: List[Vehicle]
 
 
@@ -138,6 +139,14 @@ class Output:
     ):
         """Builds the class from the solution."""
 
+        unplanned_stops = []
+        for node in range(model.Size()):
+            if model.IsStart(node) or model.IsEnd(node):
+                continue
+            if solution.Value(model.NextVar(node)) == node:
+                index = manager.IndexToNode(node)
+                unplanned_stops.append(input_data.get_stop_by_index(index))
+
         output_vehicles = []
         activated_vehicles = 0
         max_travel_duration = 0
@@ -183,6 +192,11 @@ class Output:
         )
 
         return cls(
-            solutions=[Solution(vehicles=output_vehicles)],
+            solutions=[
+                Solution(
+                    vehicles=output_vehicles,
+                    unplanned=unplanned_stops,
+                ),
+            ],
             statistics=statistics,
         )
