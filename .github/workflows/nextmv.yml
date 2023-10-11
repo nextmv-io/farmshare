@@ -39,6 +39,7 @@ jobs:
           echo "IDENTIFIER=$IDENTIFIER" >> $GITHUB_ENV
 
       - name: Update app, create version, update instance, create experiment
+        shell: bash -l {0}
         run: |
           echo "running app push" >> $GITHUB_STEP_SUMMARY
           nextmv app push \
