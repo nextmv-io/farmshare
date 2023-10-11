@@ -2,8 +2,8 @@ name: nextmv
 
 on:
   push:
-    # branches:
-    #   - stable
+    branches:
+      - stable
 
 jobs:
   acceptance_test:
