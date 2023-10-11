@@ -11,7 +11,7 @@ jobs:
     env:
       NEXTMV_BASE_URL: https://api.cloud.nextmv.io
       NEXTMV_API_KEY: ${{ secrets.NEXTMV_API_KEY }}
-      APP_ID: informs
+      APP_ID: farmshare-routing
       INPUT_SET: acceptance-test-set
       IDENTIFIER: ""
       CONTROL_INSTANCE: production
