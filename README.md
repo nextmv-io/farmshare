@@ -12,4 +12,4 @@ Run the command below to check that everything works as expected:
 python3 main.py -input input.json -output output.json -duration 30
 ```
 
-A file `output.json` should have been created with the solution.
+A file `output.json` should have been created with the solution to the problem.
