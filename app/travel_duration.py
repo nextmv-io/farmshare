@@ -10,7 +10,8 @@ def add_travel_duration_dimension(
     manager: pywrapcp.RoutingIndexManager,
     model: pywrapcp.RoutingModel,
     input_data: Input,
-):
+    max_travel_duration: int,
+) -> None:
     """Add the travel time as a dimension to the routing problem."""
 
     matrix = distance_matrix(input_data)
@@ -36,7 +37,7 @@ def add_travel_duration_dimension(
     travel_dimension = model.AddDimensionWithVehicleTransits(
         evaluator_indices=transit_callback_indices,
         slack_max=0,
-        capacity=24 * 3600,
+        capacity=max_travel_duration,
         fix_start_cumul_to_zero=True,
         name=dimension_name,
     )
