@@ -34,8 +34,8 @@ def main():
     )
     parser.add_argument(
         "-max.travel.duration",
-        default=24 * 3600,
-        help="Max duration that a vehicle can travel for (in seconds). Default is 24 * 3600.",
+        default=2700,
+        help="Max duration that a vehicle can travel for (in seconds). Default is 2700.",
         type=int,
         dest="max_travel_duration",
     )

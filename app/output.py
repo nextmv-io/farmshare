@@ -1,4 +1,4 @@
-"""Output data for the aplication."""
+"""Output data for the application."""
 
 import json
 import math
