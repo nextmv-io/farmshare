@@ -43,6 +43,6 @@ Create a new instance with a new version of the app:
 
 ```bash
 VERSION_ID=$(git rev-parse --short HEAD)
-nextmv app version create -a farmshare-ortools -name $VERSION_ID -version $VERSION_ID
+nextmv app version create -a farmshare-ortools -n $VERSION_ID -v $VERSION_ID
 nextmv app instance create -a farmshare-ortools -v $VERSION_ID -i candidate-1 -n "Test candidate 1"
 ```
