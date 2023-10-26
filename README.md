@@ -7,7 +7,7 @@
 
 Example of solving a Vehicle Routing Problem using [OR-Tools](https://developers.google.com/optimization/routing/vrp).
 
-The app is hosted, managed and versioned by [Nextmv](https://nextmv.io/) ([link to app](https://cloud.nextmv.io/acc/3f62aeb3-6ba4-414b-9e0c-913e144e3afc/app/ortools)).
+The app is hosted, managed and versioned by [Nextmv](https://nextmv.io/) ([link to app](https://cloud.nextmv.io/acc/1938e794-c31c-4e65-9d63-fa50be77a82a/app/farmshare-ortools)).
 
 ## Usage
 
