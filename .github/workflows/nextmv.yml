@@ -12,8 +12,8 @@ jobs:
         env:
             NEXTMV_BASE_URL: https://api.cloud.nextmv.io
             NEXTMV_API_KEY: ${{ secrets.NEXTMV_API_KEY }}
-            APP_ID: ortools
-            INPUT_SET: acceptance-test-inputs
+            APP_ID: farmshare-ortools
+            INPUT_SET: acceptance
             IDENTIFIER: ""
             CONTROL_INSTANCE: production
             CANDIDATE_INSTANCE: development
