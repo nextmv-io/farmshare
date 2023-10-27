@@ -93,4 +93,4 @@ jobs:
                     --data $PAYLOAD | tee acceptance_test_output.json | jq -r .id)
                   echo "Response:"
                   cat acceptance_test_output.json
-                  echo "Go to [acceptance test](https://cloud.nextmv.io/acc/3f62aeb3-6ba4-414b-9e0c-913e144e3afc/app/ortools/experiments/acceptance-test/$TEST_ID) to see results" >> $GITHUB_STEP_SUMMARY
+                  echo "Go to [acceptance test](https://cloud.nextmv.io/acc/1938e794-c31c-4e65-9d63-fa50be77a82a/app/farmshare-ortools/experiments/acceptance-test/$TEST_ID) to see results" >> $GITHUB_STEP_SUMMARY
