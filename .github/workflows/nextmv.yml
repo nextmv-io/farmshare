@@ -3,7 +3,7 @@ name: nextmv
 on:
     push:
         branches:
-            - main
+            - stable
     workflow_dispatch:
 
 jobs:
