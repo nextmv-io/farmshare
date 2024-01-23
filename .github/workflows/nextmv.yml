@@ -38,11 +38,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.12
-
       - name: Install CLI
         run: |
           export NEXTMV_BASE_URL=$NEXTMV_BASE_URL
@@ -81,6 +76,16 @@ jobs:
               --version-id $IDENTIFIER \
               --instance-id $CANDIDATE_INSTANCE
         working-directory: ./${{ env.APP_DIRECTORY }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install nextmv
 
       - name: Run acceptance test for app ${{ env.APP_ID }}
         run: |
