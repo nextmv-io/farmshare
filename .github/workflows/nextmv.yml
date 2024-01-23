@@ -34,9 +34,6 @@ jobs:
       IDENTIFIER: ""
       CONTROL_INSTANCE: production
       CANDIDATE_INSTANCE: development
-    defaults:
-      run:
-        working-directory: ./${{ inputs.APP_DIRECTORY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -83,6 +80,7 @@ jobs:
               --app-id $APP_ID \
               --version-id $IDENTIFIER \
               --instance-id $CANDIDATE_INSTANCE
+        working-directory: ./${{ env.APP_DIRECTORY }}
 
       - name: Run acceptance test for app ${{ env.APP_ID }}
         run: |
