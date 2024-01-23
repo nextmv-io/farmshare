@@ -1,96 +1,115 @@
 name: nextmv
 
 on:
-    push:
-        branches:
-            - stable
-    workflow_dispatch:
+  workflow_call:
+    inputs:
+      APP_ID:
+        description: "The ID of the app to run"
+        required: true
+        type: string
+      APP_DIRECTORY:
+        description: "The directory of the app to run"
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      APP_ID:
+        description: "The ID of the app to run"
+        required: true
+        type: string
+      APP_DIRECTORY:
+        description: "The directory of the app to run"
+        required: true
+        type: string
 
 jobs:
-    acceptance_test:
-        runs-on: ubuntu-latest
-        env:
-            NEXTMV_BASE_URL: https://api.cloud.nextmv.io
-            NEXTMV_API_KEY: ${{ secrets.NEXTMV_API_KEY }}
-            APP_ID: farmshare-ortools
-            INPUT_SET: acceptance
-            IDENTIFIER: ""
-            CONTROL_INSTANCE: production
-            CANDIDATE_INSTANCE: development
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+  acceptance_test:
+    runs-on: ubuntu-latest
+    env:
+      NEXTMV_BASE_URL: https://api.cloud.nextmv.io
+      NEXTMV_API_KEY: ${{ secrets.NEXTMV_API_KEY }}
+      APP_ID: ${{ inputs.APP_ID}}
+      INPUT_SET: acceptance
+      IDENTIFIER: ""
+      CONTROL_INSTANCE: production
+      CANDIDATE_INSTANCE: development
+    defaults:
+      run:
+        working-directory: ./${{ inputs.APP_DIRECTORY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-            - name: Install CLI
-              run: |
-                  export NEXTMV_BASE_URL=$NEXTMV_BASE_URL
-                  export NEXTMV_API_KEY=$NEXTMV_API_KEY
-                  curl -sS "https://cloud.nextmv.io/install-cli.txt" | bash -
+      - name: Install CLI
+        run: |
+          export NEXTMV_BASE_URL=$NEXTMV_BASE_URL
+          export NEXTMV_API_KEY=$NEXTMV_API_KEY
+          curl -sS "https://cloud.nextmv.io/install-cli.txt" | bash -
 
-            - name: Configure CLI
-              shell: bash -l {0}
-              run: |
-                  nextmv configure --api-key $NEXTMV_API_KEY
-                  nextmv activate
-                  nextmv sdk install
+      - name: Configure CLI
+        shell: bash -l {0}
+        run: |
+          nextmv configure --api-key $NEXTMV_API_KEY
+          nextmv activate
+          nextmv sdk install
 
-            - name: Set identifier
-              run: |
-                  IDENTIFIER=$(git rev-parse --short HEAD)
-                  echo "IDENTIFIER=$IDENTIFIER" >> $GITHUB_ENV
+      - name: Set identifier
+        run: |
+          IDENTIFIER=$(git rev-parse --short HEAD)
+          echo "IDENTIFIER=$IDENTIFIER" >> $GITHUB_ENV
 
-            - name: Update app, create version, update instance, create experiment
-              shell: bash -l {0}
-              run: |
-                  echo "Pushing app \"$APP_ID\"" >> $GITHUB_STEP_SUMMARY
-                  nextmv app push \
-                      --app-id $APP_ID
+      - name: Update app, create version, update instance, create experiment for app ${{ env.APP_ID }}
+        shell: bash -l {0}
+        run: |
+          echo "Pushing app \"$APP_ID\"" >> $GITHUB_STEP_SUMMARY
+          nextmv app push \
+              --app-id $APP_ID
 
-                  echo "Creating new version \"$IDENTIFIER\"" >> $GITHUB_STEP_SUMMARY
-                  nextmv app version create \
-                      --app-id $APP_ID \
-                      --version-id $IDENTIFIER \
-                      --name $IDENTIFIER \
-                      --description "Version ${IDENTIFIER}"
+          echo "Creating new version \"$IDENTIFIER\"" >> $GITHUB_STEP_SUMMARY
+          nextmv app version create \
+              --app-id $APP_ID \
+              --version-id $IDENTIFIER \
+              --name $IDENTIFIER \
+              --description "Version ${IDENTIFIER}"
 
-                  echo "Updating \"$CANDIDATE_INSTANCE\" instance to version \"$IDENTIFIER\"" >> $GITHUB_STEP_SUMMARY
-                  nextmv app instance update \
-                      --app-id $APP_ID \
-                      --version-id $IDENTIFIER \
-                      --instance-id $CANDIDATE_INSTANCE
+          echo "Updating \"$CANDIDATE_INSTANCE\" instance to version \"$IDENTIFIER\"" >> $GITHUB_STEP_SUMMARY
+          nextmv app instance update \
+              --app-id $APP_ID \
+              --version-id $IDENTIFIER \
+              --instance-id $CANDIDATE_INSTANCE
 
-                  echo "Starting experiment on input set \"$INPUT_SET\"" >> $GITHUB_STEP_SUMMARY
-                  nextmv experiment batch start \
-                      --app-id $APP_ID \
-                      --experiment-id $IDENTIFIER \
-                      --input-set-id $INPUT_SET \
-                      --instance-ids "${CONTROL_INSTANCE},${CANDIDATE_INSTANCE}" \
-                      --name $IDENTIFIER \
-                      --description "Experiment ${IDENTIFIER}" \
-                      --confirm
+          echo "Starting experiment on input set \"$INPUT_SET\"" >> $GITHUB_STEP_SUMMARY
+          nextmv experiment batch start \
+              --app-id $APP_ID \
+              --experiment-id $IDENTIFIER \
+              --input-set-id $INPUT_SET \
+              --instance-ids "${CONTROL_INSTANCE},${CANDIDATE_INSTANCE}" \
+              --name $IDENTIFIER \
+              --description "Experiment ${IDENTIFIER}" \
+              --confirm
 
-            - name: Run acceptance test
-              run: |
-                  PAYLOAD=$(
-                    cat acceptance_test.json | 
-                    jq \
-                      -c \
-                      --arg IDENTIFIER $IDENTIFIER \
-                      --arg APP_ID $APP_ID \
-                      --arg CONTROL_INSTANCE $CONTROL_INSTANCE \
-                      --arg CANDIDATE_INSTANCE $CANDIDATE_INSTANCE \
-                      '.id |= $IDENTIFIER | 
-                      .name |= $IDENTIFIER | 
-                      .experiment_id |= $IDENTIFIER | 
-                      .app_id |= $APP_ID | 
-                      .control.instance_id |= $CONTROL_INSTANCE | 
-                      .candidate.instance_id |= $CANDIDATE_INSTANCE'
-                  )
+      - name: Run acceptance test for app ${{ env.APP_ID }}
+        run: |
+          PAYLOAD=$(
+            cat acceptance_test.json | 
+            jq \
+              -c \
+              --arg IDENTIFIER $IDENTIFIER \
+              --arg APP_ID $APP_ID \
+              --arg CONTROL_INSTANCE $CONTROL_INSTANCE \
+              --arg CANDIDATE_INSTANCE $CANDIDATE_INSTANCE \
+              '.id |= $IDENTIFIER | 
+              .name |= $IDENTIFIER | 
+              .experiment_id |= $IDENTIFIER | 
+              .app_id |= $APP_ID | 
+              .control.instance_id |= $CONTROL_INSTANCE | 
+              .candidate.instance_id |= $CANDIDATE_INSTANCE'
+          )
 
-                  TEST_ID=$(curl --location $NEXTMV_BASE_URL/v1/applications/$APP_ID/experiments/acceptance \
-                    --header "Content-Type: application/json" \
-                    --header "Authorization: Bearer $NEXTMV_API_KEY" \
-                    --data $PAYLOAD | tee acceptance_test_output.json | jq -r .id)
-                  echo "Response:"
-                  cat acceptance_test_output.json
-                  echo "Go to [acceptance test](https://cloud.nextmv.io/acc/1938e794-c31c-4e65-9d63-fa50be77a82a/app/farmshare-ortools/experiments/acceptance-test/$TEST_ID) to see results" >> $GITHUB_STEP_SUMMARY
+          TEST_ID=$(curl --location $NEXTMV_BASE_URL/v1/applications/$APP_ID/experiments/acceptance \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer $NEXTMV_API_KEY" \
+            --data $PAYLOAD | tee acceptance_test_output.json | jq -r .id)
+          echo "Response:"
+          cat acceptance_test_output.json
+          echo "Go to [acceptance test](https://cloud.nextmv.io/acc/1938e794-c31c-4e65-9d63-fa50be77a82a/app/farmshare-ortools/experiments/acceptance-test/$TEST_ID) to see results" >> $GITHUB_STEP_SUMMARY
