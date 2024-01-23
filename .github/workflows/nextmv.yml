@@ -29,6 +29,7 @@ jobs:
       NEXTMV_BASE_URL: https://api.cloud.nextmv.io
       NEXTMV_API_KEY: ${{ secrets.NEXTMV_API_KEY }}
       APP_ID: ${{ inputs.APP_ID}}
+      APP_DIRECTORY: ${{ inputs.APP_DIRECTORY }}
       INPUT_SET: acceptance
       IDENTIFIER: ""
       CONTROL_INSTANCE: production
@@ -39,6 +40,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
 
       - name: Install CLI
         run: |
@@ -78,38 +84,12 @@ jobs:
               --version-id $IDENTIFIER \
               --instance-id $CANDIDATE_INSTANCE
 
-          echo "Starting experiment on input set \"$INPUT_SET\"" >> $GITHUB_STEP_SUMMARY
-          nextmv experiment batch start \
-              --app-id $APP_ID \
-              --experiment-id $IDENTIFIER \
-              --input-set-id $INPUT_SET \
-              --instance-ids "${CONTROL_INSTANCE},${CANDIDATE_INSTANCE}" \
-              --name $IDENTIFIER \
-              --description "Experiment ${IDENTIFIER}" \
-              --confirm
-
       - name: Run acceptance test for app ${{ env.APP_ID }}
         run: |
-          PAYLOAD=$(
-            cat acceptance_test.json | 
-            jq \
-              -c \
-              --arg IDENTIFIER $IDENTIFIER \
-              --arg APP_ID $APP_ID \
-              --arg CONTROL_INSTANCE $CONTROL_INSTANCE \
-              --arg CANDIDATE_INSTANCE $CANDIDATE_INSTANCE \
-              '.id |= $IDENTIFIER | 
-              .name |= $IDENTIFIER | 
-              .experiment_id |= $IDENTIFIER | 
-              .app_id |= $APP_ID | 
-              .control.instance_id |= $CONTROL_INSTANCE | 
-              .candidate.instance_id |= $CANDIDATE_INSTANCE'
-          )
-
-          TEST_ID=$(curl --location $NEXTMV_BASE_URL/v1/applications/$APP_ID/experiments/acceptance \
-            --header "Content-Type: application/json" \
-            --header "Authorization: Bearer $NEXTMV_API_KEY" \
-            --data $PAYLOAD | tee acceptance_test_output.json | jq -r .id)
+          echo "Starting acceptance test on input set \"$INPUT_SET\"" >> $GITHUB_STEP_SUMMARY
+          RESPONSE=$(python ci-cd-tests.py)
           echo "Response:"
-          cat acceptance_test_output.json
+          echo $RESPONSE | jq .
+          TEST_ID=$(echo $RESPONSE | jq -r .id)
           echo "Go to [acceptance test](https://cloud.nextmv.io/acc/1938e794-c31c-4e65-9d63-fa50be77a82a/app/farmshare-ortools/experiments/acceptance-test/$TEST_ID) to see results" >> $GITHUB_STEP_SUMMARY
+        working-directory: ./github/workflows
