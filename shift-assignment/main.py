@@ -1,6 +1,7 @@
 import argparse
 import datetime
 import json
+import math
 import sys
 from typing import Any
 
@@ -206,7 +207,7 @@ def solve(
     try:
         value = pyo.value(model.objective)
     except ValueError:
-        value = None
+        value = math.nan
 
     # Measure the time.
     end_time = datetime.datetime.now()
