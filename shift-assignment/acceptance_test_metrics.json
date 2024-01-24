@@ -1,0 +1,60 @@
+{
+  "metrics": [
+    {
+      "field": "result.value",
+      "statistic": "mean",
+      "metric_type": "direct-comparison",
+      "params": {
+        "operator": "lte"
+      }
+    },
+    {
+      "field": "result.custom.variables",
+      "statistic": "mean",
+      "metric_type": "direct-comparison",
+      "params": {
+        "operator": "lte"
+      }
+    },
+    {
+      "field": "result.custom.fixed_variables",
+      "statistic": "mean",
+      "metric_type": "direct-comparison",
+      "params": {
+        "operator": "lte"
+      }
+    },
+    {
+      "field": "result.custom.constraints",
+      "statistic": "mean",
+      "metric_type": "direct-comparison",
+      "params": {
+        "operator": "lte"
+      }
+    },
+    {
+      "field": "result.custom.active_workers",
+      "statistic": "mean",
+      "metric_type": "direct-comparison",
+      "params": {
+        "operator": "lte"
+      }
+    },
+    {
+      "field": "result.custom.total_workers",
+      "statistic": "mean",
+      "metric_type": "direct-comparison",
+      "params": {
+        "operator": "eq"
+      }
+    },
+    {
+      "field": "result.custom.availability_usage",
+      "statistic": "mean",
+      "metric_type": "direct-comparison",
+      "params": {
+        "operator": "gte"
+      }
+    }
+  ]
+}

@@ -7,18 +7,35 @@
   "launch": {
     "configurations": [
       {
-        "name": "Python: Module",
+        "name": "vehicle-routing",
         "type": "python",
         "request": "launch",
-        "module": "main",
+        "program": "${workspaceFolder}/vehicle-routing/main.py",
         "justMyCode": true,
         "args": [
           "-input",
-          "input.json",
+          "vehicle-routing/input.json",
           "-output",
-          "output.json",
+          "vehicle-routing/output.json",
           "-duration",
-          "30"
+          "5"
+        ]
+      },
+      {
+        "name": "shift-assignment",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/shift-assignment/main.py",
+        "justMyCode": true,
+        "args": [
+          "-input",
+          "shift-assignment/input.json",
+          "-output",
+          "shift-assignment/output.json",
+          "-duration",
+          "5",
+          "-provider",
+          "glpk"
         ]
       }
     ]
