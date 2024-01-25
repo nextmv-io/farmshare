@@ -3,7 +3,7 @@ name: shift-assignment
 on:
   push:
     paths:
-      - "./shift-assignment/*.py"
+      - "shift-assignment/**"
     branches:
       - stable
 

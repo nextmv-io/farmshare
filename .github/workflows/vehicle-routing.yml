@@ -3,7 +3,7 @@ name: vehicle-routing
 on:
   push:
     paths:
-      - "./vehicle-routing/*.py"
+      - "vehicle-routing/**"
     branches:
       - stable
 
@@ -11,5 +11,5 @@ jobs:
   vehicle-routing:
     uses: ./.github/workflows/nextmv.yml
     with:
-      APP_ID: vehicle-routing-pyomo
+      APP_ID: farmshare-ortools
       APP_DIRECTORY: ./vehicle-routing
