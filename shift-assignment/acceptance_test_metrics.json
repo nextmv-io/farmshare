@@ -5,7 +5,7 @@
       "statistic": "mean",
       "metric_type": "direct-comparison",
       "params": {
-        "operator": "lte"
+        "operator": "le"
       }
     },
     {
@@ -13,7 +13,7 @@
       "statistic": "mean",
       "metric_type": "direct-comparison",
       "params": {
-        "operator": "lte"
+        "operator": "le"
       }
     },
     {
@@ -21,7 +21,7 @@
       "statistic": "mean",
       "metric_type": "direct-comparison",
       "params": {
-        "operator": "lte"
+        "operator": "le"
       }
     },
     {
@@ -29,7 +29,7 @@
       "statistic": "mean",
       "metric_type": "direct-comparison",
       "params": {
-        "operator": "lte"
+        "operator": "le"
       }
     },
     {
@@ -37,7 +37,7 @@
       "statistic": "mean",
       "metric_type": "direct-comparison",
       "params": {
-        "operator": "lte"
+        "operator": "le"
       }
     },
     {
@@ -53,7 +53,7 @@
       "statistic": "mean",
       "metric_type": "direct-comparison",
       "params": {
-        "operator": "gte"
+        "operator": "ge"
       }
     }
   ]
