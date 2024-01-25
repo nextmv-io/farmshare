@@ -1,4 +1,5 @@
 import argparse
+import copy
 import datetime
 import json
 import logging
@@ -189,7 +190,11 @@ def solve(
     value = pyo.value(model.objective, exception=False)
     assigned_shifts = []
     fixed_vars = 0
+    availabilities_used = 0
+    total_availabilities = 0
     for worker in workers:
+        worker_availabilities = copy.deepcopy(worker["availability"])
+        total_availabilities += len(worker_availabilities)
         for shift in shifts:
             assignment = model.x_assign[(worker["id"], shift["id"])]
             if assignment() is not None and assignment() > 0.9:
@@ -201,6 +206,14 @@ def solve(
                         "end_time": shift["end_time"],
                     }
                 )
+                for availability in worker_availabilities:
+                    if (
+                        availability["start_time"] <= shift["start_time"]
+                        and availability["end_time"] >= shift["end_time"]
+                    ):
+                        availabilities_used += 1
+                        worker_availabilities.remove(availability)
+
             if assignment.is_fixed():
                 fixed_vars += 1
 
@@ -221,7 +234,10 @@ def solve(
                 "constraints": model.nconstraints(),
                 "active_workers": active_workers,
                 "total_workers": total_workers,
-                "availability_usage": 100 * (active_workers / total_workers),
+                "worker_assignment_rate": active_workers / total_workers,
+                "merged_availabilities_used": availabilities_used,
+                "merged_total_availabilities": total_availabilities,
+                "merged_availability_usage": availabilities_used / total_availabilities,
             },
             "duration": results.solver.time,
             "value": value if value is not None else "nan",
