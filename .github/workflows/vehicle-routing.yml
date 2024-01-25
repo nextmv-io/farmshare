@@ -3,7 +3,7 @@ name: vehicle-routing
 on:
   push:
     paths:
-      - "./vehicle-routing/**.py"
+      - "./vehicle-routing/*.py"
     branches:
       - stable
 
