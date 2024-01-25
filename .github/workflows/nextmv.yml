@@ -98,4 +98,4 @@ jobs:
           echo "Response:"
           echo $RESPONSE | jq .
           TEST_ID=$(echo $RESPONSE | jq -r .id)
-          echo "Go to [acceptance test](https://cloud.nextmv.io/acc/1938e794-c31c-4e65-9d63-fa50be77a82a/app/farmshare-ortools/experiments/acceptance-test/$TEST_ID) to see results" >> $GITHUB_STEP_SUMMARY
+          echo "Go to [acceptance test](https://cloud.nextmv.io/acc/1938e794-c31c-4e65-9d63-fa50be77a82a/app/$APP_ID/experiments/acceptance-test/$TEST_ID) to see results" >> $GITHUB_STEP_SUMMARY
