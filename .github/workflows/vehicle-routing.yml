@@ -13,3 +13,5 @@ jobs:
     with:
       APP_ID: farmshare-ortools
       APP_DIRECTORY: ./vehicle-routing
+    secrets:
+      NEXTMV_API_KEY: ${{ secrets.NEXTMV_API_KEY }}

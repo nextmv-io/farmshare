@@ -13,3 +13,5 @@ jobs:
     with:
       APP_ID: shift-assignment-pyomo
       APP_DIRECTORY: ./shift-assignment
+    secrets:
+      NEXTMV_API_KEY: ${{ secrets.NEXTMV_API_KEY }}

@@ -11,6 +11,10 @@ on:
         description: "The directory of the app to run"
         required: true
         type: string
+    secrets:
+      NEXTMV_API_KEY:
+        description: "The API key for the Nextmv API"
+        required: true
   workflow_dispatch:
     inputs:
       APP_ID:
