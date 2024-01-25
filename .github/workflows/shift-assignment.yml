@@ -1,0 +1,15 @@
+name: shift-assignment
+
+on:
+  push:
+    paths:
+      - "./shift-assignment/**.py"
+    branches:
+      - stable
+
+jobs:
+  shift-assignment:
+    uses: ./.github/workflows/nextmv.yml
+    with:
+      APP_ID: shift-assignment-pyomo
+      APP_DIRECTORY: ./shift-assignment

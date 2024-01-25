@@ -1,10 +1,13 @@
 import argparse
 import datetime
 import json
+import logging
 import sys
 from typing import Any
 
 import pyomo.environ as pyo
+
+logging.getLogger("pyomo.core").setLevel(logging.ERROR)
 
 # Duration parameter for the solver.
 SUPPORTED_PROVIDER_DURATIONS = {
@@ -183,6 +186,7 @@ def solve(
     results = solver.solve(model)
 
     # Parse solution.
+    value = pyo.value(model.objective, exception=False)
     assigned_shifts = []
     fixed_vars = 0
     for worker in workers:
@@ -203,11 +207,6 @@ def solve(
     active_workers = len(set(shift["worker_id"] for shift in assigned_shifts))
     total_workers = len(workers)
 
-    try:
-        value = pyo.value(model.objective)
-    except ValueError:
-        value = "nan"
-
     # Measure the time.
     end_time = datetime.datetime.now()
 
@@ -225,7 +224,7 @@ def solve(
                 "availability_usage": 100 * (active_workers / total_workers),
             },
             "duration": results.solver.time,
-            "value": value,
+            "value": value if value is not None else "nan",
         },
         "run": {
             "duration": (end_time - start_time).total_seconds(),
