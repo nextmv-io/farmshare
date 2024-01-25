@@ -49,11 +49,35 @@
       }
     },
     {
-      "field": "result.custom.availability_usage",
+      "field": "result.custom.worker_assignment_rate",
       "statistic": "mean",
       "metric_type": "direct-comparison",
       "params": {
-        "operator": "ge"
+        "operator": "le"
+      }
+    },
+    {
+      "field": "result.custom.merged_availabilities_used",
+      "statistic": "mean",
+      "metric_type": "direct-comparison",
+      "params": {
+        "operator": "le"
+      }
+    },
+    {
+      "field": "result.custom.merged_total_availabilities",
+      "statistic": "mean",
+      "metric_type": "direct-comparison",
+      "params": {
+        "operator": "eq"
+      }
+    },
+    {
+      "field": "result.custom.merged_availability_usage",
+      "statistic": "mean",
+      "metric_type": "direct-comparison",
+      "params": {
+        "operator": "le"
       }
     }
   ]

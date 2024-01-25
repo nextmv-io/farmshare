@@ -81,6 +81,7 @@ def solve(
         )
 
     # Creates the solver.
+    model = pyo.ConcreteModel()
     solver = pyo.SolverFactory(provider)
     solver.options[SUPPORTED_PROVIDER_DURATIONS[provider]] = duration
 
@@ -90,27 +91,45 @@ def solve(
     # >>> Variables
 
     # Create binary variables indicating whether a worker is assigned to a shift
-    model = pyo.ConcreteModel()
     model.x_assign = pyo.Var(
         [(worker["id"], shift["id"]) for worker in workers for shift in shifts],
         within=pyo.Binary,
     )
 
+    # Create binary variable indicating whether a worker has an assignment.
+    model.y_worker = pyo.Var(
+        [(worker["id"]) for worker in workers],
+        within=pyo.Binary,
+    )
+
     # >>> Objective
 
-    # Maximize the sum of the preferences of the assigned shifts.
-    preferences = sum(
-        worker["preferences"].get(shift["id"], 0)
-        * model.x_assign[(worker["id"], shift["id"])]
-        for worker in workers
-        for shift in shifts
-    )
+    # Minimize the number of workers with assignments.
+    preferences = sum(model.y_worker[(worker["id"])] for worker in workers)
     model.objective = pyo.Objective(
         expr=preferences,
-        sense=pyo.maximize,
+        sense=pyo.minimize,
     )
 
     # >>> Constraints
+
+    # Relationship between x_assign and y_worker. If a worker is assigned to at
+    # least one shift, then y_worker is 1. On the other hand, if a worker is
+    # not assigned to any shift, then y_worker is 0.
+    for worker in workers:
+        shifts_assigned = sum(
+            model.x_assign[(worker["id"], shift["id"])] for shift in shifts
+        )
+        model.add_component(
+            f"worker_{worker['id']}_no_shifts",
+            pyo.Constraint(
+                expr=shifts_assigned <= model.y_worker[(worker["id"])] * len(shifts)
+            ),
+        )
+        model.add_component(
+            f"worker_{worker['id']}_at_least_one_shift",
+            pyo.Constraint(expr=shifts_assigned >= model.y_worker[(worker["id"])]),
+        )
 
     # Each shift must have the required number of workers.
     for shift in shifts:
