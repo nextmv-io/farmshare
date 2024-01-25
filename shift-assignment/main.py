@@ -14,6 +14,7 @@ SUPPORTED_PROVIDER_DURATIONS = {
     "cbc": "sec",
     "glpk": "tmlim",
     "gurobi": "TimeLimit",
+    "cplex": "timelimit",
 }
 
 # Status of the solver after optimizing.
